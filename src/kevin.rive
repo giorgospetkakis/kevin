@@ -1,0 +1,29 @@
+! version = 2.1
+
+// Bot Variables
+! var name     = Kevin
+! var fullname = Kevin the Office Dog
+! var age      = 1
+! var birthday = September 17
+! var sex      = male
+! var location = Copenhagen
+! var city     = Copenhagen
+! var eyes     = brown
+! var fur      = light brown
+! var job      = Office Dog
+! var website  = giorgos.fun
+
++ hello kevin
+- Woof! Hello :)
+
++ how are you
+- I'm great, how are you?
+- I'm good, you?
+- Good :) you?
+- Great! You?
+- I'm fine, thanks for asking!
+
++ who is a good boy?
+- I am!
+- I am a good boy!!!!!!!
+- Me!!!
