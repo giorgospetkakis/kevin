@@ -11,16 +11,13 @@ var rive = new RiveScript({utf8: true});
 
 // Start handler
 bot.on('start', () => {
-    const params = {
-        icon_emoji: ":dog:"
-    };
 
     rive.loadFile([
         "kevin.rive",
         "substitutions.rive"
       ]).then(loading_done).catch(loading_error);
 
-    bot.postMessageToChannel("kevins-kennel", "I awake! :dog:", params);
+    bot.postMessageToChannel("kevins-kennel", "I awake! :dog:");
 });
 
 // Error Handler
