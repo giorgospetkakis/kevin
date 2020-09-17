@@ -13,8 +13,9 @@ var rive = new RiveScript({utf8: true});
 bot.on('start', () => {
 
     rive.loadFile([
-        "kevin.rive",
-        "substitutions.rive"
+        "substitutions.rive",
+        "kevin.rive"
+        
       ]).then(loading_done).catch(loading_error);
 
     bot.postMessageToChannel("kevins-kennel", "I awake! :dog:");
