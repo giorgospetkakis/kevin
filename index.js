@@ -3,7 +3,7 @@ const axios = require('axios');
 const RiveScript = require('rivescript');
 
 const bot = new SlackBot({
-    token:"xoxb-1376262550244-1383262827025-g9rnoaeXthi6wvdAqWfCntz1",
+    token: process.env.SLACK_TOKEN,
     name:"Kevin the Office Dog"
 });
 
