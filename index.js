@@ -2,11 +2,6 @@ const SlackBot = require('slackbots');
 const Discord = require('discord.js');
 const RiveScript = require('rivescript');
 
-const dotenv = require('dotenv');
-const { debug } = require('webpack');
-
-dotenv.config();
-
 const slack_bot = new SlackBot({
     token: process.env.SLACK_TOKEN,
     name:"Kevin the Office Dog"
