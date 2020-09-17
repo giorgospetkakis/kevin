@@ -10,6 +10,7 @@
   "license": "MIT",
   "dependencies": {
     "axios": "^0.20.0",
+    "rivescript": "^2.1.0",
     "slackbots": "^1.2.0"
   }
 }
