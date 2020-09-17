@@ -27,7 +27,6 @@ discord_bot.on('ready', () => {
 });
 
 discord_bot.on('message', msg => {
-    console.log(discord_bot.user);
     if(msg.author.id === discord_bot.user.id){
         return;
     }
