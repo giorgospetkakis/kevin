@@ -1,49 +1,92 @@
 const SlackBot = require('slackbots');
-const axios = require('axios');
+const Discord = require('discord.js');
 const RiveScript = require('rivescript');
 
-const bot = new SlackBot({
+const dotenv = require('dotenv');
+const { debug } = require('webpack');
+
+dotenv.config();
+
+const slack_bot = new SlackBot({
     token: process.env.SLACK_TOKEN,
     name:"Kevin the Office Dog"
 });
 
+const discord_bot = new Discord.Client();
+const DISCORD_TOKEN = process.env.DISCORD_TOKEN;
+
 var rive = new RiveScript({utf8: true});
 
-// Start handler
-bot.on('start', () => {
+discord_bot.login(DISCORD_TOKEN);
 
+// Start handler
+slack_bot.on('start', () => {
+    init();
+
+    slack_bot.postMessageToChannel("general", "I awake! :dog:");
+});
+
+// Start handler
+discord_bot.on('ready', () => {
+    init();
+});
+
+discord_bot.on('message', msg => {
+    console.log(discord_bot.user);
+    if(msg.author.id === discord_bot.user.id){
+        return;
+    }
+    handleDiscordMessage(msg, replyToDiscordUser);
+  });
+
+function init()
+{
     rive.loadFile([
         "substitutions.rive",
         "kevin.rive"
         
       ]).then(loading_done).catch(loading_error);
-
-    bot.postMessageToChannel("kevins-kennel", "I awake! :dog:");
-});
+}
 
 // Error Handler
-bot.on('error', err => console.log(err));
+slack_bot.on('error', err => console.log(err));
 
 // Message Handler
-bot.on('message', data => {
+slack_bot.on('message', data => {
     if (data.type !== 'message') {
       return;
     }
 
-    const user = bot.getUsers()._value.members.find(element => element.id == data.user);
+    const user = slack_bot.getUsers()._value.members.find(element => element.id == data.user);
 
     if(user) {
-        handleMessage(data.text, user.name);
+        handleSlackMessage(data.text, user.name);
     }
     
   });
   
   // Query rive to respond to messages
-  function handleMessage(message, user) {
-
+  function handleSlackMessage(message, user){
     rive.reply(user, message).then(function(reply) {
-        bot.postMessageToUser(user, reply);
+        replyToSlackUser(user, reply);
     });
+  }
+
+    // Query rive to respond to messages
+    function handleDiscordMessage(message, user){
+        rive.reply(user, message.content).then(function(reply) {
+            replyToDiscordUser(message, reply);
+        });
+      }
+
+  function replyToSlackUser(user, reply)
+  {
+    slack_bot.postMessageToUser(user, reply);
+  }
+
+  function replyToDiscordUser(message, reply)
+  {
+    message.channel.send(reply);
   }
 
   function loading_done() {
