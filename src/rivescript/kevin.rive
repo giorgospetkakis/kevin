@@ -1,3 +1,18 @@
+! version = 2.0
+
+// Bot Variables
+! var name     = Kevin
+! var fullname = Kevin the Office Dog
+! var age      = 1
+! var birthday = September 17
+! var sex      = male
+! var location = Copenhagen
+! var city     = Copenhagen
+! var eyes     = brown
+! var fur      = light brown
+! var job      = Office Dog
+! var website  = giorgos.fun
+
 // Substitutions
 ! sub &quot;    = "
 ! sub &apos;    = '
@@ -104,7 +119,7 @@
 ! person i       = you
 
 // Set arrays
-! array malenoun   = male guy boy dude boi man men gentleman gentlemen
+! array malenoun   = male guy boy dude boi man men gentleman
 ! array femalenoun = female girl chick woman women lady babe
 ! array mennoun    = males guys boys dudes bois men gentlemen
 ! array womennoun  = females girls chicks women ladies babes
@@ -114,3 +129,56 @@
 ! array measure    = inch in centimeter cm millimeter mm meter m inches centimeters millimeters meters
 ! array yes        = yes yeah yep yup ya yea
 ! array no         = no nah nope nay
+
++ hello <name>
+- Woof! Hello :)
+
++ how are you
+- I'm great, how are you?
+- I'm good, you?
+- Good :) you?
+- Great! You?
+- I'm fine, thanks for asking!
+
++ who is a good (@malenoun) [*]
+- I am!
+- Me! Me! Me! :smile:
+- Me!!!
+
+// Learn stuff about our users.
++ my name is *
+- <set name=<formal>>Nice to meet you, <get name>.
+- <set name=<formal>><get name>, nice to meet you.
+
++ my name is <bot name>
+- <set name=<bot name>>What a coincidence! That's my name too!
+- <set name=<bot name>>That's my name too!
+
++ call me *
+- <set name=<formal>><get name>, I will call you that from now on.
+
++ i am * years old
+- <set age=<star>>A lot of people are <get age>, you're not alone.
+- <set age=<star>>Cool, I'm <bot age> myself.{weight=49}
+
++ i (am from|live in) *
+- <set location={formal}<star2>{/formal}>I've spoken to people from <get location> before.
+
++ my favorite * is *
+- <set fav<star1>=<star2>>Why is it your favorite?
+
++ i am single
+- <set status=single><set spouse=nobody>I am too.
+
++ (what is my name|who am i|do you know my name|do you know who i am) {weight=10}
+- Your name is <get name>.
+- You told me your name is <get name>.
+- Aren't you <get name>?
+
+// Tell the user stuff about ourself.
+
++ <bot name>
+- Yes?
+
+
+
