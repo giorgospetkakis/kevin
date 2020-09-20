@@ -2,7 +2,6 @@
 var dotenv = require("dotenv");
 var discord = require('./src/discord-bot');
 var slackbot = require("./src/slack-bot");
-var web = require("./src/webpage");
 
 // // Keep the app alive
 // setInterval(report, 3600 * 5);
