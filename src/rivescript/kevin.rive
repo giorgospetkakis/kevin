@@ -1,16 +1,36 @@
+! global debug=true
+
 > begin
 
-// If we don't know the user's name, set the new_user topic and continue
 + request
-* <get met> == undefined => <set met=true>{topic=new_user}{ok}
+* <get retrieved> == undefined => <call> get_user <id> </call> <set retrieved=true> {topic=receive_info}{ok}
 - {ok}
 
 < begin
 
+> topic receive_info
+
++ userinfo name _
+- <set name=<formal>>
+
++ userinfo save_state _
+- <set save_state=<star2>>
+
++ userinfo eof
+- {topic=<get save_state>}
+
++ userinfo notfound
+- {topic=new_user}
+
++ *
+- Loading...
+
+< topic
+
 > topic new_user
 
 + *
-- Hello, my name is <bot name>. I am a chatbot written in Rivescript\s 
+- Hello, my name is <bot name>. I am a chatbot written in Rivescript\s
 ^ What is your name?{topic=asked_name}
 
 < topic
@@ -24,23 +44,68 @@
 - I only want your first name.
 
 + _
-- <set name=<formal>>Nice to meet you, <get name>!{topic=random}
+- <set name=<formal>>Nice to meet you, <get name>!{topic=intro}
+^ <call> create_user <id> <get name> <get topic> </call>
+
+< topic
+
+
+> topic intro
+
++ *
+- This is the Introduction. Say "Proceed to Advance to Level 2."
+
++ proceed
+- Advancing to Level 2...{topic=level2} {@*}
+
++ back
+- Going back to Level 1...
+
++ save
+- <call> save <id> <get name> <get topic> </call>
+^ Progress saved.
+
+< topic
+
+> topic level2
+
++ *
+- Hi <get name>. This is Level 2.\n
+^ Say "Back" to go back to Level 1\n
+^ Say "End" to finish the game.
+
++ back
+- {topic=intro} {@ *}
+
++ end
+- {topic=gameover} {@ *}
+
++ save
+- <call> save <id> <get name> <get topic> </call>
+^ Progress saved.
+
+< topic
+
+> topic gameover
+
++ *
+- The game is over.\n
+^ Thanks for playing.\n
+^ \n
+^ Say restart to try again.\n
+
++ save
+- <call> save <id> <get name> <get topic> </call>
+^ Progress saved.
+
++ restart
+- {topic=intro} {@ *}
+
+< topic
 
 > topic random
 
 + *
-- My main functionality is to remember things.\s
-^ Just tell me things and I'll remember them. {topic=remember}
-
-< topic
-
-> topic remember
-
-+ *
-- Say something like "The sky is blue"\s
-^ and I will remember it.
-
-+ [*] * (is|are) *
-- I'll remember that the <star1> is <star3>
+- {topic=<get save_state>} {@<star>}
 
 < topic

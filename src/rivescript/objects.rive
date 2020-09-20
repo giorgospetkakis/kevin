@@ -1,0 +1,31 @@
+// Create a new user to the database
+> object create_user javascript
+var currdir = process.cwd();
+var db = require(currdir + "/src/mongodb-connect");
+const User = require(currdir + "/src/user");
+
+const new_user = new User(...args);
+db.add_user(new_user);
+return "";
+< object
+
+// Create a new user to the database
+> object save javascript
+var currdir = process.cwd();
+var db = require(currdir + "/src/mongodb-connect");
+const User = require(currdir + "/src/user");
+
+const user = new User(...args);
+db.save(user);
+return "";
+< object
+
+// Get user information from the database
+> object get_user javascript
+var currdir = process.cwd();
+var db = require(currdir + "/src/mongodb-connect");
+const User = require(currdir + "/src/user");
+
+db.get_user(args[0]);
+return "";
+< object
