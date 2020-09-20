@@ -4,8 +4,7 @@ const User = require("./user.js");
 const rive = require("./rive-backend");
 
 // Connection URL
-const url =
-  "mongodb+srv://admin:2JAYeNCRAtEzOJbo@cluster0.nfckk.gcp.mongodb.net/chatbot?retryWrites=true&w=majority";
+const url = "";
 
 // Database Name
 const dbName = "chatbot";
