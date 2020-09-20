@@ -26,7 +26,7 @@ discord_bot.on("message", (msg) => {
     return;
   }
 
-  handleDiscordMessage(msg, replyToDiscordUser);
+  handleDiscordMessage(msg, msg.author.id);
 });
 
 // Query rive to respond to messages
@@ -41,6 +41,6 @@ function handleDiscordMessage(message, user) {
 
 // Reply to the user
 function replyToDiscordUser(message, reply) {
-  if (reply === "Reply not matched." || reply === "ERR: No Reply Matched") return;
+  if (reply === "Reply not matched." || reply === "ERR: No Reply Matched" || reply === "") return;
   else message.channel.send(reply);
 }

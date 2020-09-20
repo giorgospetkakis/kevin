@@ -5,7 +5,7 @@ var rive = new RiveScript({ utf8: true });
 var riveDir = "./src/rivescript/";
 
 rive
-  .loadFile([riveDir + "kevin.rive", riveDir + "begin.rive"])
+  .loadFile([riveDir + "kevin.rive", riveDir + "begin.rive", riveDir + "objects.rive"])
   .then(loading_done)
   .catch(loading_error);
 
