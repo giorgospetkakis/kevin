@@ -21,17 +21,26 @@ discord_bot.on("message", (msg) => {
   if (msg.author.id === discord_bot.user.id) {
     return;
   }
+
+  if (msg.channel.name !== "kevin-dev-channel") {
+    return;
+  }
+
   handleDiscordMessage(msg, replyToDiscordUser);
 });
 
 // Query rive to respond to messages
 function handleDiscordMessage(message, user) {
-  rive.getRiveBackend().reply(user, message.content).then(function (reply) {
-    replyToDiscordUser(message, reply);
-  });
+  rive
+    .getRiveBackend()
+    .reply(user, message.content)
+    .then(function (reply) {
+      replyToDiscordUser(message, reply);
+    });
 }
 
 // Reply to the user
 function replyToDiscordUser(message, reply) {
-  message.channel.send(reply);
+  if (reply === "Reply not matched." || reply === "ERR: No Reply Matched") return;
+  else message.channel.send(reply);
 }

@@ -5,7 +5,7 @@ var rive = new RiveScript({ utf8: true });
 var riveDir = "./src/rivescript/";
 
 rive
-  .loadFile(riveDir + "kevin.rive")
+  .loadFile([riveDir + "kevin.rive", riveDir + "begin.rive"])
   .then(loading_done)
   .catch(loading_error);
 
@@ -21,8 +21,7 @@ function loading_error(error, filename, lineno) {
 }
 
 module.exports = {
-    getRiveBackend: function ()
-    {
-        return rive;
-    }
-  };
+  getRiveBackend: function () {
+    return rive;
+  },
+};
