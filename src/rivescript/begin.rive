@@ -1,3 +1,18 @@
+! version = 2.0
+
+// Bot Variables
+! var name     = Kevin
+! var fullname = Kevin the Office Dog
+! var age      = 1
+! var birthday = September 17
+! var sex      = male
+! var location = Copenhagen
+! var city     = Copenhagen
+! var eyes     = brown
+! var fur      = light brown
+! var job      = Office Dog
+! var website  = giorgos.fun
+
 // Substitutions
 ! sub &quot;    = "
 ! sub &apos;    = '
@@ -104,7 +119,7 @@
 ! person i       = you
 
 // Set arrays
-! array malenoun   = male guy boy dude boi man men gentleman gentlemen
+! array malenoun   = male guy boy dude boi man men gentleman
 ! array femalenoun = female girl chick woman women lady babe
 ! array mennoun    = males guys boys dudes bois men gentlemen
 ! array womennoun  = females girls chicks women ladies babes
@@ -114,3 +129,4 @@
 ! array measure    = inch in centimeter cm millimeter mm meter m inches centimeters millimeters meters
 ! array yes        = yes yeah yep yup ya yea
 ! array no         = no nah nope nay
+! array hi         = hello hey hi hola sup
