@@ -1,34 +1,46 @@
-// Catch all.
-+ *
-- Reply not matched.
+> begin
 
-// Basic functionality
-+ @hi [<bot name>]
-- Woof! Hello :)
+// If we don't know the user's name, set the new_user topic and continue
++ request
+* <get met> == undefined => <set met=true>{topic=new_user}{ok}
+- {ok}
 
-+ @hi *
-- Who are you talking to?
-- Is someone else here?
-- Huh?
+< begin
 
-+ <bot name> [?]
-- Yes?
-- What's up
-- What were we talking about?
-- That's me
-- Woof?
-
-+ knock knock
-- Who's there?
+> topic new_user
 
 + *
-% who is there?
-- <star> who?
+- Hello, my name is <bot name>. I am a chatbot written in Rivescript\s 
+^ What is your name?{topic=asked_name}
+
+< topic
+
+> topic asked_name
+
++ #
+- Your name is a number?
 
 + *
-% * who
-- hahahaha
+- I only want your first name.
 
++ _
+- <set name=<formal>>Nice to meet you, <get name>!{topic=random}
 
+> topic random
 
++ *
+- My main functionality is to remember things.\s
+^ Just tell me things and I'll remember them. {topic=remember}
 
+< topic
+
+> topic remember
+
++ *
+- Say something like "The sky is blue"\s
+^ and I will remember it.
+
++ [*] * (is|are) *
+- I'll remember that the <star1> is <star3>
+
+< topic
