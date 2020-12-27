@@ -5,7 +5,7 @@ const rive = require("./rive-backend");
 const discord_bot = new Discord.Client();
 const DISCORD_TOKEN = process.env.DISCORD_TOKEN;
 discord_bot.login(
-  "NzU2MjM5MjYwMTAwNzIyNzc5.X2O8sQ.wXRcHoxkd_J-0K1NkVYmWAmVBCA"
+  ""
 ); //(DISCORD_TOKEN);
 
 // Post (re)start message
